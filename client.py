@@ -8,7 +8,7 @@ def start_client():
         print("Connection error:", e)
         return
 
-    # Receive the initial question from the server
+    #Receive the initial question from the server
     try:
         question = client_socket.recv(1024).decode('utf-8')
     except:
@@ -17,7 +17,7 @@ def start_client():
     if not question:
         return
         
-    # First prompt asks question AND the guess instruction on same line
+    #First prompt asks question AND the guess instruction on same line
     guess = input(f"{question} Your guess (or 'END' to finish): ")
     
     while True:
@@ -32,13 +32,13 @@ def start_client():
             
         print(response)
         
-        # Check termination keywords seen in the screenshot output
+        #Check termination keywords seen in the screenshot output
         if ("Closing connection" in response or 
             "Connection will close" in response or 
             "Goodbye" in response):
             break
             
-        # Subsequent prompts just ask for the guess
+        #Subsequent prompts just ask for the guess
         guess = input("Your guess (or 'END' to finish): ")
 
     client_socket.close()
